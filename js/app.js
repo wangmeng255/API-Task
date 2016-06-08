@@ -8,20 +8,24 @@ $(function() {
 	{
 		var params = {
 			part: 'snippet',
-			key: 'AIzaSyBj-6yexvISyWGkdaezwvuABjfq3z_tl-U',
+			key: 'AIzaSyC2SZAGEzADokf5uyjZvYTsVv9OFPEoxeM',
 			q: searchItem
 		}
-		url = 'htps://www.googleapis.com/youtube/v3/search';
+		url = "https://www.googleapis.com/youtube/v3/search";
 		$.getJSON(url, params, function(data) {
-		var movie = data.Search;
-		showResults(movie);
+			console.log(data.items);
+			showResults(data.items);
 		});
 	}
-	function showResults(movie)
+	function showResults(items)
 	{
-		$.each(movie, function(i, val) {
-			$("#search-item").append("<p>" +
-				val.Title + "</p>");
+		$.each(items, function(i, val) {
+			$("#search-results").append("<a href='" +"//youtube.com/watch?v=" + 
+				val.id.videoId + "/' target='_blank'><img src='" +
+				val.snippet.thumbnails.default.url + "' class='thumbnails' width='"+
+				val.snippet.thumbnails.default.width +"' height='" +
+				val.snippet.thumbnails.default.height + "' title='" +
+				val.snippet.title + "' data-lightbox='example-set'></a>");
 		});
 	}
 });

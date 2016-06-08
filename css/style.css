@@ -1,6 +1,11 @@
-form {
+#search-item {
 	font-size: 1.2rem;
 }
-div {
+#search-results {
 	font-size: 1rem;
+	display: flex;
+	flex-direction: row;
+}
+.thumbnails {
+	margin: 0.1rem;
 }
