@@ -1,5 +1,7 @@
 $(function() {
-	$(".iframe").fancybox();
+	$(".fancybox").fancybox({
+        openEffect  : 'elastic'
+     });
 	$("#search-item").submit(function(event) {
 		event.preventDefault();
 		var searchItem = $("#query").val();
@@ -20,15 +22,16 @@ $(function() {
 	}
 	function showResults(items)
 	{
-		$("#search-results").append('<a class="iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">Youtube (iframe)</a>');
-		/*
-		$.each(items, function(i, val) {
-			$("#search-results").append("<a class='iframe' href='//youtube.com/embed/" + 
-				val.id.videoId + "'><img src='" +
-				val.snippet.thumbnails.default.url + "' class='thumbnails' width='"+
-				val.snippet.thumbnails.default.width +"' height='" +
-				val.snippet.thumbnails.default.height + "' title='" +
-				val.snippet.title + "'></a>");
-		});*/
+		$("#search-results").append(function() {
+			$.each(items, function(i, val) {
+				$("#search-results").append("<div><a class='fancybox' data-fancybox-type='iframe' href='//youtube.com/embed/" + 
+					val.id.videoId + "' data-video-id='" + val.id.videoId + "'><img src='" +
+					val.snippet.thumbnails.default.url + "' class='thumbnails' width='"+
+					val.snippet.thumbnails.default.width +"' height='" +
+					val.snippet.thumbnails.default.height + "' title='" +
+					val.snippet.title + "'></a><br><a href='//youtube.com/channel/" + 
+					val.snippet.channelId + "' target='_blank'>From Channel</a></div>");
+			});
+		});
 	}
 });
