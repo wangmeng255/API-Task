@@ -1,4 +1,5 @@
 $(function() {
+	$(".iframe").fancybox();
 	$("#search-item").submit(function(event) {
 		event.preventDefault();
 		var searchItem = $("#query").val();
@@ -19,6 +20,8 @@ $(function() {
 	}
 	function showResults(items)
 	{
+		$("#search-results").append('<a class="iframe" href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1">Youtube (iframe)</a>');
+		/*
 		$.each(items, function(i, val) {
 			$("#search-results").append("<a class='iframe' href='//youtube.com/embed/" + 
 				val.id.videoId + "'><img src='" +
@@ -26,7 +29,6 @@ $(function() {
 				val.snippet.thumbnails.default.width +"' height='" +
 				val.snippet.thumbnails.default.height + "' title='" +
 				val.snippet.title + "'></a>");
-		});
-		$(".iframe").fancybox();	
+		});*/
 	}
 });
