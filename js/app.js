@@ -1,7 +1,18 @@
 $(function() {
-	$(".fancybox").fancybox({
-        openEffect  : 'elastic'
-     });
+	$(".iframe").fancybox();
+	$("#tip4").fancybox({
+			'padding'		: 0,
+			'autoScale'		: false,
+			'transitionIn'	: 'none',
+			'transitionOut'	: 'none',
+			'title'			: this.title,
+			'width'		: 854,
+			'height'		: 480,
+			'content':'<iframe width="854" height="480" src="https://www.youtube.com/embed/' + $("#tip4").attr('data-video-id') + '" frameborder="0" allowfullscreen></iframe>',
+			//'href'			: this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+			'type'			: 'iframe',
+	});
+
 	$("#search-item").submit(function(event) {
 		event.preventDefault();
 		var searchItem = $("#query").val();
@@ -18,6 +29,7 @@ $(function() {
 		$.getJSON(url, params, function(data) {
 			console.log(data.items);
 			showResults(data.items);
+
 		});
 	}
 	function showResults(items)
