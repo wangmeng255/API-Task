@@ -20,12 +20,13 @@ $(function() {
 	function showResults(items)
 	{
 		$.each(items, function(i, val) {
-			$("#search-results").append("<a href='" +"//youtube.com/watch?v=" + 
-				val.id.videoId + "/' target='_blank'><img src='" +
+			$("#search-results").append("<a class='iframe' href='//youtube.com/embed/" + 
+				val.id.videoId + "'><img src='" +
 				val.snippet.thumbnails.default.url + "' class='thumbnails' width='"+
 				val.snippet.thumbnails.default.width +"' height='" +
 				val.snippet.thumbnails.default.height + "' title='" +
-				val.snippet.title + "' data-lightbox='example-set'></a>");
+				val.snippet.title + "'></a>");
 		});
+		$(".iframe").fancybox();	
 	}
 });
