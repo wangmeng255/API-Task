@@ -13,11 +13,5 @@
 	padding: 0;
 	margin: 0 auto 0 auto;
 	max-width: 12rem;
-	outline: 1px solid red;
-}
-#search-results .fancybox {
-	box-sizing: border-box;
-	max-width: 12rem;
-	padding: 0;
-	margin:0 auto 0 auto;
+	text-align: center;
 }
