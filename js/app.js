@@ -1,18 +1,4 @@
 $(function() {
-	$(".iframe").fancybox();
-	$("#tip4").fancybox({
-			'padding'		: 0,
-			'autoScale'		: false,
-			'transitionIn'	: 'none',
-			'transitionOut'	: 'none',
-			'title'			: this.title,
-			'width'		: 854,
-			'height'		: 480,
-			'content':'<iframe width="854" height="480" src="https://www.youtube.com/embed/' + $("#tip4").attr('data-video-id') + '" frameborder="0" allowfullscreen></iframe>',
-			//'href'			: this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
-			'type'			: 'iframe',
-	});
-
 	$("#search-item").submit(function(event) {
 		event.preventDefault();
 		var searchItem = $("#query").val();
@@ -36,14 +22,28 @@ $(function() {
 	{
 		$("#search-results").append(function() {
 			$.each(items, function(i, val) {
-				$("#search-results").append("<div><a class='fancybox' data-fancybox-type='iframe' href='//youtube.com/embed/" + 
-					val.id.videoId + "' data-video-id='" + val.id.videoId + "'><img src='" +
-					val.snippet.thumbnails.default.url + "' class='thumbnails' width='"+
+				$("#search-results").append(
+					"<div><a class='fancybox' href='#0' data-video-id='" +
+				 	val.id.videoId + "'><img src='" + val.snippet.thumbnails.default.url + "' class='thumbnails' width='"+
 					val.snippet.thumbnails.default.width +"' height='" +
 					val.snippet.thumbnails.default.height + "' title='" +
 					val.snippet.title + "'></a><br><a href='//youtube.com/channel/" + 
-					val.snippet.channelId + "' target='_blank'>From Channel</a></div>");
+					val.snippet.channelId + "' target='_blank'>" + 
+					val.snippet.title + "</a></div>");
+
+					$(".fancybox").fancybox({
+						'padding'		: 0,
+						'autoScale'		: false,
+						'transitionIn'	: 'none',
+						'transitionOut'	: 'none',
+						'content':'<iframe width="854" height="480" src="https://www.youtube.com/embed/' + 
+						$(".fancybox").attr('data-video-id') + '" frameborder="0" allowfullscreen></iframe>',
+						//'href'			: this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+						'type'			: 'iframe'
+				});
 			});
 		});
+		var num = 100/items.length;
+		$("#search-results div").width(num + "%");
 	}
 });
